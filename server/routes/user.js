@@ -1,10 +1,17 @@
 const express = require('express');
 const User = require('../models/user');
+const {verficaToken, verficaAdmin} = require('../middlewares/autenticacion');
 const app = express();
 const bcrypt = require('bcrypt');
 const _ = require('underscore');
 
-app.get('/usuario', function (req, res) {
+app.get('/usuario', verficaToken, (req, res) => {
+
+	/*return res.json({
+		usuario: req.usuario,
+		nombre: req.usuario.name,
+		email: req.usuario.email
+	});*/
 
 	let since = req.query.since || 0;
 	let end = req.query.end || 5;
@@ -38,7 +45,7 @@ app.get('/usuario', function (req, res) {
 		})
 });
 
-app.post('/usuario', function (req, res) {
+app.post('/usuario', [verficaToken,verficaAdmin], (req, res) => {
 	let body = req.body;
 	//console.log(body);
 	let user = new User({
@@ -75,7 +82,7 @@ app.post('/usuario', function (req, res) {
 	}*/
 });
 
-app.put('/usuario/:id', function (req, res) {
+app.put('/usuario/:id', [verficaToken, verficaAdmin], (req, res) => {
 	let id = req.params.id;
 	let body = _.pick(req.body,['name','email','img','role','estado']);
 
@@ -95,7 +102,7 @@ app.put('/usuario/:id', function (req, res) {
 	});
 });
 
-app.delete('/usuario/:id', function (req, res) {
+app.delete('/usuario/:id', [verficaToken, verficaAdmin], (req, res) => {
 	/*let id = req.params.id;
 
 	User.findByIdAndRemove(id, (err, UserDelete) => {

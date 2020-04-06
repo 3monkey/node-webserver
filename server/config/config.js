@@ -5,6 +5,12 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
 let userDB = 'cafe-user';
 let passDB = 'caf3pass';
 
+/** Vencimiento token */
+process.env.CADUCIDDAD_TOKEN = 60 * 60 * 24 * 30;
+
+/** SEED autenticación */
+process.env.SEED = process.env.SEED || 'secret';
+
 /** PUERTO */
 process.env.PORT = process.env.PORT || 3000;
 
