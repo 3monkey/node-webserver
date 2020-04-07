@@ -14,6 +14,9 @@ process.env.SEED = process.env.SEED || 'secret';
 /** PUERTO */
 process.env.PORT = process.env.PORT || 3000;
 
+/** Google Client Id*/
+process.env.CLIENT_ID = process.env.CLIENT_ID || '588492687703-f0gdb8lk9s0qgndfo73tcgpnr6bf4krb.apps.googleusercontent.com';
+
 /** BBDD */
 let DBdev = 'mongodb://localhost:27017/cafe';
 let DBprod = process.env.MONGO_URI;
