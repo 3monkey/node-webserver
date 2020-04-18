@@ -17,7 +17,7 @@ app.get('/usuario', verficaToken, (req, res) => {
 	let end = req.query.end || 5;
 	since = Number(since);
 	end = Number(end);
-
+	
 	let params = {
 		estado: true
 	}
